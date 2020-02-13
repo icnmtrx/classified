@@ -1,0 +1,31 @@
+{% extends "classified/base_base.html" %}
+
+{% block leftmenu %}
+<h4>Поиск</h4>
+<div class="card bg-light card-body card-sm">
+    <form>
+        <fieldset>
+            <input type="text" class="form-control" />
+            <small><a href="#" class="btn-advanced-search">Advanced</a></small>
+            <input type="submit" class="btn btn-danger btn-sm btn-search" 
+            value="Search" />
+        </fieldset>
+    </form>
+</div>
+
+<h4>Категории</h4>
+<div class="small">
+    <a href="{% url 'adv-list' %}">Показать все
+    </a> 
+</div>
+<div class="list-group categories">
+    {% for cat in categories_count %}
+        
+              <a class="list-group-item" 
+              href="{% url 'adv-list' %}?cat={{ cat.cat.slug }}">{{ cat.cat }}
+              <span>{{ cat.count }}</span></a>
+        
+    {% endfor %}
+</div>
+
+{% endblock leftmenu %}  

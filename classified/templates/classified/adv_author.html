@@ -1,0 +1,22 @@
+{% extends "classified/base.html" %}
+
+{% block content %}
+    <div class="media">
+        <img class="rounded-circle" style="width: 72px; height: 72px;"
+         src="{{ author.user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ author.user.username }}</h2>
+          {% if user.is_authenticated%}
+          <p class="text-secondary">{{ author.user.profile.phone }}</p> 
+          {% else %}
+          <p class="text-secondary">log in to view contacts</p>   
+          {% endif %}
+        </div>
+    </div>
+    
+
+    <h2>Все объявления автора {{ author.first_name }} </h2>
+    {% include "classified/object_list.html" with object_list=object_list %}
+    {% include "classified/paginate.html" with page_obj=page_obj%}
+    
+{% endblock content %}  

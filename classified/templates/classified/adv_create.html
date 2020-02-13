@@ -1,0 +1,26 @@
+{% extends "classified/base.html" %}
+
+{% load i18n%}
+{% load l10n %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% localize on %}
+
+
+    <div class="content-section">
+        <form method="POST" class="uniForm">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Новое объявление</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Сохранить</button>
+            </div>
+        </form>
+    </div>
+
+{% endlocalize %}
+
+{% endblock content %}

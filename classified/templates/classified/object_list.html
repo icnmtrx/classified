@@ -1,0 +1,60 @@
+<hr>
+<div class="row classified-table">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Объявление</th>
+                    <th class="text-center">Цена</th>
+                    <th class="text-center">Категория</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                <tr>
+                    <td class="col-md-5">
+                        <div class="row">
+                            <div class="media">
+                                <a class="thumbnail pull-left" 
+                                href="{% url 'adv-detail' object.slug %}">
+                                        <img class="media-object" 
+                                        src="{{ object.image.url }}" 
+                                        style="width: 72px; height: 72px;">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                    <a href="{% url 'adv-detail' object.slug %}">{{ object.header}}</a>
+                                </h4>
+                                <small>
+                                        <div class="text-secondary">Автор: 
+                                            <a href="{% url 'adv-author-list' object.author.slug %}">
+                                                {{ object.author }}</a> 
+                                        </div>
+                                        <div class="text-secondary">
+                                            Обновлено: {{ object.date_updated }}</a> 
+                                        </div>
+                                </small>
+                                <p>
+                                    <small>{{ object.body }}
+                                    </small>
+                                </p>
+                            </div>
+                        </div>  
+                    </td>
+                    <td class=" text-center" 
+                    style="vertical-align: middle;"><small>{{ object.price }}</small>
+                    </td>
+                    <td class=" text-center" 
+                    style="vertical-align: middle;">
+                    <small>
+                        <a href="{% url 'adv-list' %}?cat={{ object.category.slug }}">{{ object.category }}</a>
+                    </small>
+                    </td>
+                </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+    </div>
+</div>
+

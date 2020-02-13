@@ -1,0 +1,27 @@
+{% extends "classified/base_base.html" %}
+
+
+{% block leftmenu %}
+<div class="content-section">
+        <div class="media">
+          <img class="rounded-circle" style="width: 72px; height: 72px;" 
+          src="{{ user.profile.image.url }}">
+          <div class="media-body">
+            <h2 class="account-heading">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+            <div class="change-password small">
+                <a href="{% url 'password_change' %}">Изменить пароль</a>
+            </div>    
+          </div>
+        </div>
+</div>
+
+<div class="list-group">
+    <a class="list-group-item"
+        href="{% url 'profile'  %}" >Детали
+    </a>
+    <a class="list-group-item"
+        href="{% url 'adv-author-list' user.profile.slug %}">Все объявления</a>
+</div>
+  
+{% endblock leftmenu%}

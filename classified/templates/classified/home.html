@@ -1,0 +1,20 @@
+{% extends "classified/base.html" %}
+
+{% block content %}
+
+    <h2>Категории</h2>
+    <div class="row">
+    {% for cat in categories_count %}
+        <div class="media content-section col-md-4">
+          <div class="media-body">
+            <div class="category-metadata">
+              <a class="mr-2" href="{% url 'adv-list' %}?cat={{ cat.cat.slug }}">{{ cat.cat }}</a>{{ cat.count }}
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+
+    
+
+{% endblock content %}  

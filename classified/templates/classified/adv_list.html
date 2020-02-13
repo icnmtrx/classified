@@ -1,0 +1,9 @@
+{% extends "classified/base.html" %}
+
+{% block content %}
+    <h4>{{ title }} </h4>
+
+   {% include "classified/object_list.html" with object_list=object_list %}
+   {% include "classified/paginate.html" with page_obj=page_obj %}
+    
+{% endblock content %}  

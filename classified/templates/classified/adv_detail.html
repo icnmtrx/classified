@@ -1,0 +1,57 @@
+{% extends "classified/base.html" %}
+
+{% block content %}
+
+<div class="media content-section">
+    <div class="media-body">
+    <div class="category-metadata">
+        <div class="row">
+            <div class="media container">
+                <img class="account-img" width="300" height="300"
+                    src="{{ object.image.url }}">
+            </div>            
+        </div>
+        <div class="row">
+            <div class="text-secondary col-sm">
+                <div>Регион: {{ object.region }}</div>
+                <div>Категория: 
+                    <a href="{% url 'adv-list' %}?cat={{ object.category.slug }}">{{ object.category }}</a>
+                </div>
+            </div>
+                
+            <div class="text-secondary col-sm float-sm-right">
+                <div class="float-sm-right">Автор: 
+                <a href="{% url 'adv-author-list' object.author.slug %}">{{ object.author }}</a> 
+                {% if user == object.author.user %}
+                    (это вы)
+                {% endif %}
+                </div>
+                {% if user.is_authenticated %}
+                <p class="float-sm-right">Телефон для связи: {{ object.author.phone }} </p>
+                {% endif %}
+            </div>
+        
+        </div>
+        <h3>{{ object.header }}</h3>
+        <p>{{ object.body }}</p>
+        <div class="row">
+            <div class="col-sm">Цена: {{ object.price }}</div>
+            <div class="col-sm text-secondary">
+                <small>
+                <div class="float-right">Размещено: {{ object.date_posted }}</div>
+                <div class="float-right">Обновлено: {{ object.date_updated }}</div>
+                </small>
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+            {% if user == object.author.user %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1"
+             href="{% url 'adv-update' object.slug %}">Редактировать</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" 
+            href="{% url 'adv-delete' object.slug %}">Удалить</a>
+            {% endif %}
+        {% endif %}
+    </div>
+    </div>
+</div>
+{% endblock content %}  
